@@ -31,10 +31,10 @@ labels:
   pairs:
     app: my-app
     env: prod
-#patches:
-#- path: custom-env.yaml
-#- path: replica-and-rollout-strategy.yaml
-#- path: database-secret.yaml
+patches:
+- path: custom-env.yaml
+- path: replica-and-rollout-strategy.yaml
+- path: database-secret.yaml
 
 resources:
 - ../../../base
