@@ -2,20 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 
-patchesStrategicMerge:
-- custom-env.yaml
-- replica-and-rollout-strategy.yaml
-- database-secret.yaml
 
 namespace: prod
 
-commonLabels:
-  app: my-app
-  env: prod
 
 namePrefix: prod-
 
-resources:
+bases:
 - ../../../base
 
 # cd k8s/overlays/prod
@@ -35,3 +28,12 @@ images:
 - name: foo/bar
   newName: foo/bar
   newTag: 3.4.5
+labels:
+- includeSelectors: true
+  pairs:
+    app: my-app
+    env: prod
+patches:
+- path: custom-env.yaml
+- path: replica-and-rollout-strategy.yaml
+- path: database-secret.yaml
