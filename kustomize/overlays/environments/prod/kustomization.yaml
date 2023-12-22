@@ -8,8 +8,6 @@ namespace: prod
 
 namePrefix: prod-
 
-bases:
-- ../../../base
 
 # cd k8s/overlays/prod
 # kustomize edit add secret sl-demo-app --from-literal=db-password=12345
@@ -35,5 +33,6 @@ labels:
     env: prod
 patches:
 - path: custom-env.yaml
-- path: replica-and-rollout-strategy.yaml
-- path: database-secret.yaml
+resources:
+- ../../../base
+- ingress.yaml
