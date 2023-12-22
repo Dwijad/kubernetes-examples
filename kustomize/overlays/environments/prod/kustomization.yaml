@@ -16,7 +16,7 @@ commonLabels:
 namePrefix: prod-
 
 resources:
-- ../../base
+- ../../../base
 
 # cd k8s/overlays/prod
 # kustomize edit add secret sl-demo-app --from-literal=db-password=12345
