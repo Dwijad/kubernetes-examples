@@ -5,11 +5,10 @@ metadata:
   name: kubernetes-examples
   namespace: flux-system
 spec:
-  targetNamespace: prod
   interval: 2m0s
   path: ./kustomize
   prune: true
   sourceRef:
     kind: GitRepository
     name: kubernetes-examples
-  targetNamespace: default
+  targetNamespace: prod
