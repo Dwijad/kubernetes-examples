@@ -1,20 +1,37 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namePrefix: prod-
-
-commonLabels:
-    app: my-app
-    env: prod
-
-
-bases:
-  - ../../../base
-
-resources:
-  - ingress.yaml
 
 patchesStrategicMerge:
-  - deployment.yaml
+- custom-env.yaml
+- replica-and-rollout-strategy.yaml
+- database-secret.yaml
 
 namespace: prod
+
+commonLabels:
+  app: my-app
+  env: prod
+
+namePrefix: prod-
+
+resources:
+- ../../base
+
+# cd k8s/overlays/prod
+# kustomize edit add secret sl-demo-app --from-literal=db-password=12345
+
+secretGenerator:
+- literals:
+  - db-password=12345
+  name: sl-demo-app
+  type: Opaque
+
+# TAG_VERSION=3.4.5
+# cd k8s/overlays/prod
+# kustomize edit set image foo/bar=foo/bar:$TAG_VERSION
+
+images:
+- name: foo/bar
+  newName: foo/bar
+  newTag: 3.4.5
