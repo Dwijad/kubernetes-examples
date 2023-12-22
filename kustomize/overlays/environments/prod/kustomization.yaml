@@ -33,3 +33,4 @@ patches:
 resources:
 - ../../../base
 - ingress.yaml
+- namespace.yaml
