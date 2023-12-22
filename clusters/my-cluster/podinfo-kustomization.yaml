@@ -5,6 +5,7 @@ metadata:
   name: kubernetes-examples
   namespace: flux-system
 spec:
+  targetNamespace: prod
   interval: 2m0s
   path: ./kustomize
   prune: true
