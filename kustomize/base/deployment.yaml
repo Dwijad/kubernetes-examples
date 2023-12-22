@@ -1,26 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: my-app-deployment
-  name: my-app-deployment
+  name: sl-demo-app
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: my-app-deployment
-  strategy: {}
+      app: sl-demo-app
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: my-app-deployment
+        app: sl-demo-app
     spec:
       containers:
-      - image: nginx:1.14.2
-        name: nginx
+      - name: app
+        image: foo/bar:latest
         ports:
-        - containerPort: 80
-        resources: {}
-status: {}
+        - name: http
+          containerPort: 8080
+          protocol: TCP
